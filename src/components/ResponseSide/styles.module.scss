@@ -1,0 +1,43 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    padding: 0 4rem;
+    // background: rgb(2,0,36);
+    // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    // background: #24C6DC;
+    // background: linear-gradient(90deg, #24C6DC) 0%, #514A9D 100%;
+    background: linear-gradient(to right, #87e0fd 0%,#53cbf1 34%,#05abe0 100%);
+
+    padding-top: 2rem;
+    text-align: center;
+
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 3rem;
+        font-family: 'Fredericka the Great', cursive;
+        color: var( --blue-300)
+    }
+    
+    .resultTable {
+
+        width: 100%;
+
+        th, td {
+            padding: 0.75rem 1rem;
+        }
+
+        th {
+            background: var(--gray-850);
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 1rem;
+            text-align: left;
+            color: var(--cyan-500);
+            margin-bottom: 0.825rem;
+        }
+}
+
+
+
+}
