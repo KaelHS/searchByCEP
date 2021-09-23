@@ -8,18 +8,21 @@ export function ResponseSide() {
     return(
         <div className={styles.container}>
 
-            <h1>Seu CEP</h1>
+            <h1>Sua Localização por CEP</h1>
+            <p>{axiosResponse.cep}</p>
             <table className={styles.resultTable}>
                 <thead>
-                    <tr>
-                        <th>DDD</th>
-                        <th>UF</th>
-                        <th>Cidade</th>
-                        <th>Bairro</th>
-                        <th>Logradouro</th>
-                        <th>Complemento</th>
-                        <th>IBGE</th>
-                    </tr>
+                    { axiosResponse.uf?.length > 0 &&                         
+                        <tr>
+                            <th>DDD</th>
+                            <th>UF</th>
+                            <th>Cidade</th>
+                            <th>Bairro</th>
+                            <th>Logradouro</th>
+                            <th>Complemento</th>
+                            <th>IBGE</th>
+                        </tr>
+                    }
                 </thead>
                 <tbody>
                     { axiosResponse && 

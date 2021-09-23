@@ -28,6 +28,8 @@ export function FormSide() {
 
     const { setLocaleResponses } = useCEP();
 
+    const [radio, setRadio] = useState('');
+
     const { register, handleSubmit, formState, reset } = useForm();
 
     const { errors } = formState;
@@ -85,8 +87,24 @@ export function FormSide() {
                     />
                     
                 <div className={styles.radiosButton}>
-                    <label><input type="radio" />CEP</label>
-                    <label><input type="radio" />Cidade</label>
+                    <label>
+                        <input 
+                            type="radio" 
+                            value="cep"
+                            checked={radio === 'cep'}
+                            onChange={ ({target}) => setRadio(target.value)}
+                        />
+                            CEP
+                    </label>
+                    <label>
+                        <input 
+                            type="radio" 
+                            value="city"
+                            checked={radio === "city"}
+                            onChange={ ({target}) => setRadio(target.value)}
+                        />
+                            Cidade
+                    </label>
                 </div>
                 <button 
                     type="submit"

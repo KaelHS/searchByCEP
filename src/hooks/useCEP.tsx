@@ -12,6 +12,7 @@ interface CepContextProviderProps {
 interface searchDataProps {
     ddd: string;
     uf: string;
+    cep:string;
     localidade: string;
     bairro: string;
     logradouro: string;
