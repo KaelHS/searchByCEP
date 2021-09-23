@@ -26,7 +26,6 @@ interface SearchLocaleData {
 
 export function FormSide() {
 
-    const [ search, setSearch ] = useState('');
     const { setLocaleResponses } = useCEP();
 
     const { register, handleSubmit, formState, reset } = useForm();
