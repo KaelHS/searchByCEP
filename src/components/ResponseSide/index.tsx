@@ -10,7 +10,7 @@ export function ResponseSide() {
 
             <h1>Sua Localização por CEP</h1>
             <p>{axiosResponse.cep}</p>
-            <table className={styles.resultTable}>
+            {/* <table className={styles.resultTable}>
                 <thead>
                     { axiosResponse.uf?.length > 0 &&                         
                         <tr>
@@ -37,8 +37,12 @@ export function ResponseSide() {
                         </tr>
                     }
                 </tbody>
-            </table>
-
+            </table> */}
+            { axiosResponse && 
+                <ul>
+                    
+                </ul>
+            }
 
         </div>
     );

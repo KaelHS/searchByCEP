@@ -1,8 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Lottie from 'react-lottie';
+import { ErrorMessage } from "@hookform/error-message";
+import { FaMapSigns, FaMapMarkerAlt } from 'react-icons/fa';
+import { InputGroup, Icon, InputLeftElement, Input } from '@chakra-ui/react';
 import animationData from '../../../public/globe.json'
-import { FaMapSigns } from 'react-icons/fa';
+import Lottie from 'react-lottie';
 
 import { useCEP } from "../../hooks/useCEP";
 import { api } from "../../services/api";
@@ -19,8 +21,7 @@ const defaultOptions = {
 };
 
 interface SearchLocaleData {
-    uf?: string;
-    city?:string;
+
     search: string;
 }
 
@@ -30,7 +31,9 @@ export function FormSide() {
 
     const [radio, setRadio] = useState('');
 
-    const { register, handleSubmit, formState, reset } = useForm();
+    const { register, handleSubmit, formState, reset } = useForm<SearchLocaleData>({
+        criteriaMode: 'all'
+    });
 
     const { errors } = formState;
 
@@ -38,24 +41,24 @@ export function FormSide() {
 
         event?.defaultPrevented;
 
-        console.log(value);
-
         const { data } = await api.get(`/${value.search}/json`);
         
         setLocaleResponses(data);
-
-        console.log(data)
 
         reset(value);
       }
 
       useEffect(() => {
+
         if (formState.isSubmitSuccessful) {
+
           reset({ search: '' });
+
         }
       }, [formState, reset]);
 
     return(
+
         <div className={styles.container}>
             <h1><FaMapSigns /><span>Teu</span>Cep</h1>
             <div className={styles.animation}>
@@ -70,21 +73,41 @@ export function FormSide() {
 
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input 
-                    type="text"
-                    {...register('search', {
-                        required: {
-                            value: true,
-                            message: "É obrigatório preencher o CEP"
-                        },
-                        pattern: {
-                            value: /[0-9]{8}/ ,
-                            message: "CEP inválido"
-                        },
-                        valueAsNumber:true,
-                    })}
-                    placeholder="Entre com o CEP ( somente números )" 
-                    />
+                    <InputGroup>
+                    <InputLeftElement children={<FaMapMarkerAlt />}/>
+                    <Input  
+                        type="text"
+                        placeholder="Entre com o CEP ( somente números )"
+                        {...register('search', {
+                            required: "É obrigatório preencher o CEP",
+                            pattern: {
+                                value: /^\d{8}/ ,
+                                message: "CEP inválido"
+                            },
+                            maxLength: {
+                                value: 8,
+                                message: "CEP inválido ( tamanho incorreto )"
+                            },
+                            minLength: {
+                                value: 8,
+                                message: "CEP inválido ( tamanho incorreto )"
+                            }
+                        })}
+                        
+                        />
+                        </InputGroup>
+                        <ErrorMessage
+                            errors={errors}
+                            name="search"
+                            render={({ messages }) => {
+                            console.log("messages", messages);
+                            return messages 
+                                ? Object.entries(messages).map(([type, message]: [string, string]) => (
+                                    <p key={type}>{message}</p>
+                                ))
+                                : null;
+                            }}
+                        />
                     
                 <div className={styles.radiosButton}>
                     <label>
