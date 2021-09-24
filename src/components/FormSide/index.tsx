@@ -95,7 +95,6 @@ export function FormSide() {
                         })}
                         
                         />
-                        </InputGroup>
                         <ErrorMessage
                             errors={errors}
                             name="search"
@@ -108,6 +107,7 @@ export function FormSide() {
                                 : null;
                             }}
                         />
+                        </InputGroup>
                     
                 <div className={styles.radiosButton}>
                     <label>
