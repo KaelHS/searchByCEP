@@ -72,9 +72,7 @@ export function FormSide() {
                 />
 
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputGroup>
-                    <InputLeftElement children={<FaMapMarkerAlt />}/>
+            <form onSubmit={handleSubmit(onSubmit)}>    
                     <Input  
                         type="text"
                         placeholder="Entre com o CEP ( somente números )"
@@ -107,7 +105,6 @@ export function FormSide() {
                                 : null;
                             }}
                         />
-                        </InputGroup>
                     
                 <div className={styles.radiosButton}>
                     <label>
